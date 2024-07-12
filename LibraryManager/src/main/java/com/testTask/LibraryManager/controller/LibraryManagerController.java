@@ -5,11 +5,34 @@ import com.testTask.LibraryManager.service.LibraryManagerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.Optional;
+
 @RestController
 @RequestMapping("/library")
 public class LibraryManagerController {
     @Autowired
     private LibraryManagerService libManager;
+
+    @GetMapping("/allBooks")
+    public List<Book> getAllBooks() {
+        return libManager.getAllBooks();
+    }
+
+    @GetMapping("/allAuthors")
+    public List<Author> getAllAuthors() {
+        return libManager.getAllAuthors();
+    }
+
+    @GetMapping("/getBook/{id}")
+    public Optional<Book> getBookById(@PathVariable Long id) {
+        return libManager.getBookById(id);
+    }
+
+    @GetMapping("/getAuthor/{id}")
+    public Optional<Author> getAuthorById(@PathVariable Long id) {
+        return libManager.getAuthorById(id);
+    }
 
     @PostMapping("/addBook")
     public String addBook(@RequestBody Book book) {
