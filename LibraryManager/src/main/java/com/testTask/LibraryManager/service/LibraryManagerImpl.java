@@ -21,6 +21,15 @@ public class LibraryManagerImpl implements LibraryManagerService {
         if (bookRepo.existsByTitle(book.getTitle())) {
             return null;
         }
+
+        Author existingAuthor = authorRepo.findByName(book.getAuthor().getName());
+        if (existingAuthor != null) {
+            book.setAuthor(existingAuthor);
+        } else {
+            Author newAuthor = authorRepo.save(book.getAuthor());
+            book.setAuthor(newAuthor);
+        }
+
         return bookRepo.save(book);
     }
 
