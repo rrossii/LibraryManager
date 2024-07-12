@@ -30,4 +30,24 @@ public class LibraryManagerController {
             return "Error adding an author: " + author.toString();
         }
     }
+
+    @DeleteMapping("/deleteBook/{id}")
+    public String deleteBook(@PathVariable Long id) {
+        boolean resultOfDelete = libManager.deleteBook(id);
+        if (resultOfDelete) {
+            return "Book has been deleted";
+        } else {
+            return "Error deleting a book with ID = " + id;
+        }
+    }
+
+    @DeleteMapping("/deleteAuthor/{id}")
+    public String deleteAuthor(@PathVariable Long id) {
+        boolean resultOfDelete = libManager.deleteAuthor(id);
+        if (resultOfDelete) {
+            return "Author has been deleted";
+        } else {
+            return "Error deleting an author with ID = " + id;
+        }
+    }
 }

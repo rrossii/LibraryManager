@@ -1,6 +1,8 @@
 package com.testTask.LibraryManager.model;
 import jakarta.persistence.*;
 
+import java.util.List;
+
 
 @Entity
 public class Author {
@@ -10,6 +12,9 @@ public class Author {
     private Long authorID;
     private String name;
     private String bio;
+
+    @OneToMany(mappedBy = "author", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    private List<Book> books;
 
     public Author() {
     }

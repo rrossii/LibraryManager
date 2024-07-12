@@ -85,16 +85,25 @@ public class LibraryManagerImpl implements LibraryManagerService {
 
 
     @Override
-    public void deleteBook(Long id) {
+    public boolean deleteBook(Long id) {
         if (bookRepo.existsById(id)) {
             bookRepo.deleteById(id);
+            return true;
         }
+        return false;
     }
 
     @Override
-    public void deleteAuthor(Long id) {
+    public boolean deleteAuthor(Long id) {
         if (authorRepo.existsById(id)) {
-            authorRepo.deleteById(id);
+            try {
+                authorRepo.deleteById(id);
+                return true;
+            } catch (Exception e) {
+                e.printStackTrace();
+                return false;
+            }
         }
+        return false;
     }
 }

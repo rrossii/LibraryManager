@@ -24,7 +24,7 @@ public interface LibraryManagerService {
     public Book updateBook(Long id, Book updatedBook);
     public Author updateAuthor(Long id, Author updatedAuthor);
 
-    public void deleteBook(Long id);
-    public void deleteAuthor(Long id);
+    public boolean deleteBook(Long id);
+    public boolean deleteAuthor(Long id);
 
 }
