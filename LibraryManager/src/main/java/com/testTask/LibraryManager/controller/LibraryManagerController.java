@@ -64,6 +64,16 @@ public class LibraryManagerController {
         }
     }
 
+    @PutMapping("/updateBook/{id}")
+    public String updateBook(@PathVariable Long id, @RequestBody Book book) {
+        Book result = libManager.updateBook(id, book);
+        if (result != null) {
+            return "Book has been updated";
+        } else {
+            return "Error updating a book: " + book.toString();
+        }
+    }
+
     @DeleteMapping("/deleteBook/{id}")
     public String deleteBook(@PathVariable Long id) {
         boolean resultOfDelete = libManager.deleteBook(id);

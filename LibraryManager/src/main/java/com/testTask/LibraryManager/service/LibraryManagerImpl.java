@@ -73,24 +73,31 @@ public class LibraryManagerImpl implements LibraryManagerService {
 
     @Override
     public Book updateBook(Long id, Book updatedBook) {
-        if (bookRepo.existsById(id)) {
-            // TODO: catch when updateBook
-            Book book = bookRepo.findById(id).orElseThrow();
-            book.setTitle(updatedBook.getTitle());
-            book.setDescription(updatedBook.getDescription());
-            book.setPublishedYear(updatedBook.getPublishedYear());
-            book.setPages(updatedBook.getPages());
-            book.getAuthor().setAuthorID(updatedBook.getAuthor().getAuthorID());
+        Optional<Book> optionalBook = bookRepo.findById(id);
+        if (optionalBook.isPresent()) {
+            Book existingBook = optionalBook.get();
+            existingBook.setTitle(updatedBook.getTitle());
+            existingBook.setDescription(updatedBook.getDescription());
+            existingBook.setPublishedYear(updatedBook.getPublishedYear());
+            existingBook.setPages(updatedBook.getPages());
 
-            return bookRepo.save(book);
+            Author existingAuthor = authorRepo.findByName(updatedBook.getAuthor().getName());
+            if (existingAuthor != null) {
+                existingBook.setAuthor(existingAuthor);
+            } else {
+                Author newAuthor = authorRepo.save(updatedBook.getAuthor());
+                existingBook.setAuthor(newAuthor);
+            }
+
+            return bookRepo.save(existingBook);
         }
         return null;
     }
 
-    @Override
-    public Author updateAuthor(Long id, Author updatedAuthor) {
-        return null;
-    }
+//    @Override
+//    public Author updateAuthor(Long id, Author updatedAuthor) {
+//        return null;
+//    }
 
 
     @Override

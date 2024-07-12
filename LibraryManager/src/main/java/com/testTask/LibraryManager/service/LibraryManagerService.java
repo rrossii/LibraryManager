@@ -22,7 +22,7 @@ public interface LibraryManagerService {
     public List<Book> filterBooksByTitle(String title);
 
     public Book updateBook(Long id, Book updatedBook);
-    public Author updateAuthor(Long id, Author updatedAuthor);
+//    public Author updateAuthor(Long id, Author updatedAuthor);
 
     public boolean deleteBook(Long id);
     public boolean deleteAuthor(Long id);
