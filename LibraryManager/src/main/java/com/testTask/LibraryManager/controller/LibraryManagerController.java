@@ -34,6 +34,16 @@ public class LibraryManagerController {
         return libManager.getAuthorById(id);
     }
 
+    @GetMapping("/filterBooksByTitle/{title}")
+    public List<Book> filterBooksByTitle(@PathVariable String title) {
+        return libManager.filterBooksByTitle(title);
+    }
+
+    @GetMapping("filterBooksByAuthorName/{name}")
+    public List<Book> filterBooksByAuthorName(@PathVariable String name) {
+        return libManager.filterBooksByAuthorName(name);
+    }
+
     @PostMapping("/addBook")
     public String addBook(@RequestBody Book book) {
         Book result = libManager.addBook(book);
