@@ -1,20 +1,22 @@
 package com.testTask.LibraryManager.model;
-
 import jakarta.persistence.*;
-
-import java.util.Date;
 
 @Entity
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "book_id")
     private Long bookID;
-    private Long authorID;
     private String title;
     private String genre;
     private String description;
-    private Date publishedDate; // or imported from java.sql
+    private int publishedYear;
     private int pages;
+
+    // TODO: name id columns as <name>ID
+    @ManyToOne(cascade = CascadeType.PERSIST) // якщо створюємо книжку, і автора не існує, створюємо і його
+    @JoinColumn(name = "author_id", nullable = false)
+    private Author author;
 
     public Book() {
     }
@@ -25,14 +27,6 @@ public class Book {
 
     public Long getBookID() {
         return bookID;
-    }
-
-    public Long getAuthorID() {
-        return authorID;
-    }
-
-    public void setAuthorID(Long authorID) {
-        this.authorID = authorID;
     }
 
     public String getTitle() {
@@ -59,12 +53,12 @@ public class Book {
         this.description = description;
     }
 
-    public Date getPublishedDate() {
-        return publishedDate;
+    public int getPublishedYear() {
+        return publishedYear;
     }
 
-    public void setPublishedDate(Date publishedDate) {
-        this.publishedDate = publishedDate;
+    public void setPublishedYear(int publishedYear) {
+        this.publishedYear = publishedYear;
     }
 
     public int getPages() {
@@ -73,5 +67,13 @@ public class Book {
 
     public void setPages(int pages) {
         this.pages = pages;
+    }
+
+    public Author getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(Author author) {
+        this.author = author;
     }
 }

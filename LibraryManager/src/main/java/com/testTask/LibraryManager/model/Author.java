@@ -1,14 +1,12 @@
 package com.testTask.LibraryManager.model;
-
 import jakarta.persistence.*;
 
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 public class Author {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "author_id")
     private Long authorID;
     private String name;
     private String bio;
