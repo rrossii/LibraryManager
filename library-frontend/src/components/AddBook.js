@@ -12,9 +12,9 @@ export function AddBook() {
                 <label for="description">Description:</label>
                 <input type="text" id="description" name="description" required /><br></br>
                 <label for="year">Published year:</label>
-                <input type="number" id="year" name="year" required /><br></br> 
+                <input type="number" id="year" name="year" min ="0" max="2026" required /><br></br> 
                 <label for="pages">Pages:</label>
-                <input type="number" id="pages" name="pages" required /><br></br> 
+                <input type="number" id="pages" name="pages" min ="0" required /><br></br> 
 
                 <input type="submit" value="Add"></input>
             </form>
