@@ -1,14 +1,17 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {BookService, fetchBooks, loadBooks} from '../utils/BookService'
+import {BookService, fetchBooks} from '../utils/BookService'
+import {AuthorService, fetchAuthors} from '../utils/AuthorService'
 
 export function Main() {
     let navigate = useNavigate(); 
 
     const [books, setBooks] = useState([])
+    const [authors, setAuthors] = useState([])
 
     useEffect(() => {
-        loadBooks()
+        loadBooks();
+        loadAuthors()
     }, [])
 
     const loadBooks = async () => {
@@ -16,7 +19,16 @@ export function Main() {
             const booksData = await fetchBooks()
             setBooks(booksData)
         } catch (error) {
-            console.error('Error loading books:', error);
+            console.error('Error loading books: ', error)
+        }
+    }
+
+    const loadAuthors = async () => {
+        try {
+            const authorsData = await fetchAuthors()
+            setAuthors(authorsData)
+        } catch (error) {
+            console.error('Error loading authors: ', error)
         }
     }
 
