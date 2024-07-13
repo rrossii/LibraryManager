@@ -1,6 +1,8 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
+import { Main } from './components/Main';
 import { Navbar } from './components/Navbar';
+import { Book } from './components/Book';
 import { AddBook } from './components/AddBook';
 import { AddAuthor } from './components/AddAuthor';
 
@@ -9,9 +11,10 @@ function App() {
     <BrowserRouter>
       <Navbar />
       <Routes>
+        <Route path='/' element={<Main />} />
+        <Route path='/getBook/:bookID' element={<Book />} />
         <Route path='/addBook' element={<AddBook />} />
         <Route path='/addAuthor' element={<AddAuthor />} />
-        {/* Add more routes as needed */}
       </Routes>
     </BrowserRouter>
   );
