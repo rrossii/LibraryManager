@@ -5,6 +5,7 @@ import com.testTask.LibraryManager.service.LibraryManagerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+
 import java.util.List;
 import java.util.Optional;
 
@@ -51,7 +52,7 @@ public class LibraryManagerController {
         if (result != null) {
             return "New book has been added";
         } else {
-            return "Error adding a book: " + book.toString();
+            return "Book with title '" + book.getTitle() + "' already exists. ";
         }
     }
 
@@ -61,7 +62,7 @@ public class LibraryManagerController {
         if (result != null) {
             return "New author has been added";
         } else {
-            return "Error adding an author: " + author.toString();
+            return "Author with name " + author.getName() + " already exists. ";
         }
     }
 
