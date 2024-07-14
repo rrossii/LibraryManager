@@ -19,7 +19,7 @@ export function Main() {
             const booksData = await fetchBooks()
             setBooks(booksData)
         } catch (error) {
-            console.error('Error loading books: ', error)
+            alert('Error loading books: ', error)
         }
     }
 
@@ -33,7 +33,8 @@ export function Main() {
     }
 
     const handleBookClick = (book) => {
-        let path = "/getBook/${book.bookID}"
+        const bookID = book.bookID;
+        let path = `/book/${bookID}`
         navigate(path)
     }
 
