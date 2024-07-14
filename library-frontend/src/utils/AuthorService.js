@@ -17,6 +17,26 @@ export const fetchAuthors = async () => {
     }
 }
 
+export const fetchAuthorById = async (authorID) => {
+    try {
+        const response = await fetch(`http://localhost:8080/library/getAuthor/${authorID}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+        if (!response.ok) {
+            throw new Error("Cannot fetch author's data! " + response)
+        }
+        
+        console.log("Author loaded")
+        return await response.json()
+    } catch (error) {
+        console.log(error)
+        throw error
+    }
+}
+
 export const addAuthor = async (author) => {
     try {
         const response = await fetch('http://localhost:8080/library/addAuthor', {

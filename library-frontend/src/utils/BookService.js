@@ -8,9 +8,29 @@ export const fetchBooks = async () => {
             }
         })
         if (!response.ok) {
-            throw new Error("Cannot fetch books data! " + "Response: " + response.status)
+            throw new Error("Cannot fetch books data! " + response)
         }
         console.log("Books loaded")
+        return await response.json()
+    } catch (error) {
+        console.log(error)
+        throw error
+    }
+}
+
+export const fetchBookById = async (bookID) => {
+    try {
+        const response = await fetch(`http://localhost:8080/library/getBook/${bookID}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+        if (!response.ok) {
+            throw new Error("Cannot fetch book data! " + response)
+        }
+        
+        console.log("Book loaded")
         return await response.json()
     } catch (error) {
         console.log(error)
@@ -37,7 +57,7 @@ export const addBook = async (book) => {
         }
         
         return await "Book has been added. " + " Status: " + response.status
-
+        
     } catch (error) {
         console.error(error)
         throw error
