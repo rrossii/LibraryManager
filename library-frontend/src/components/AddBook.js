@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { addBook } from "../utils/BookService"
+import { handleInputChange } from '../utils/formUtils'
 
 export function AddBook() {
     let navigate = useNavigate();
@@ -17,24 +18,7 @@ export function AddBook() {
         },
     });
 
-    const handleBookChange = (event) => {
-        const { name, value } = event.target
-        setBook((prevBook) => ({
-            ...prevBook,
-            [name]: value,
-        }))
-    }
-
-    const handleAuthorChange = (event) => {
-        const { name, value } = event.target
-        setBook((prevBook) => ({
-            ...prevBook,
-            author: {
-                ...prevBook.author,
-                [name]: value,
-            },
-        }))
-    }
+    const handleBookChange = handleInputChange(setBook)
 
     const handleSubmitButton = async (event) => {
         event.preventDefault()
@@ -67,7 +51,13 @@ export function AddBook() {
                     id="author"
                     name="author"
                     required 
-                    onChange={handleAuthorChange}
+                    onChange={e => setBook(prevBook => ({
+                        ...prevBook,
+                        author: {
+                            ...prevBook.author,
+                            name: e.target.value
+                        }
+                    }))}
                 /><br></br>
 
                 <label for="genre">Genre:</label>
