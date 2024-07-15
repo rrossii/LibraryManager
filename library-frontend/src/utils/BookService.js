@@ -64,6 +64,32 @@ export const addBook = async (book) => {
     }
 }
 
+export const updateBookById = async (book) => {
+    try {
+        const response = await fetch(`http://localhost:8080/library/updateBook/${book.bookID}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(book),
+        });
+
+        const responseBody = await response.text()
+        if (!response.ok) { 
+            throw new Error("Cannot update book! " + response)
+        }
+        if (responseBody !== "Book has been updated") {
+            throw new Error("Cannot update book! " + responseBody)
+        }
+        
+        return await "Book has been updated. " + " Status: " + response.status
+        
+    } catch (error) {
+        console.error(error)
+        throw error
+    }
+}
+
 export const deleteBookById = async (bookID) => {
     try {
         const response = await fetch(`http://localhost:8080/library/deleteBook/${bookID}`, {

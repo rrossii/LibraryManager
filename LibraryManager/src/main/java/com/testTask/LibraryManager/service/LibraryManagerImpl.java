@@ -74,26 +74,28 @@ public class LibraryManagerImpl implements LibraryManagerService {
     @Override
     public Book updateBook(Long id, Book updatedBook) {
         Optional<Book> optionalBook = bookRepo.findById(id);
-        if (optionalBook.isPresent()) {
-            Book existingBook = optionalBook.get();
-            existingBook.setTitle(updatedBook.getTitle());
-            existingBook.setDescription(updatedBook.getDescription());
-            existingBook.setGenre(updatedBook.getGenre());
-            existingBook.setPublishedYear(updatedBook.getPublishedYear());
-            existingBook.setPages(updatedBook.getPages());
-
-            Author existingAuthor = authorRepo.findByName(updatedBook.getAuthor().getName());
-            if (existingAuthor != null) {
-                existingBook.setAuthor(existingAuthor);
-            } else {
-                Author newAuthor = authorRepo.save(updatedBook.getAuthor());
-                existingBook.setAuthor(newAuthor);
-            }
-
-            return bookRepo.save(existingBook);
+        if (!optionalBook.isPresent()) {
+            return null;
         }
-        return null;
+
+        Book existingBook = optionalBook.get();
+        existingBook.setTitle(updatedBook.getTitle());
+        existingBook.setDescription(updatedBook.getDescription());
+        existingBook.setGenre(updatedBook.getGenre());
+        existingBook.setPublishedYear(updatedBook.getPublishedYear());
+        existingBook.setPages(updatedBook.getPages());
+
+        Author existingAuthor = authorRepo.findByName(updatedBook.getAuthor().getName());
+        if (existingAuthor != null) {
+            existingBook.setAuthor(existingAuthor);
+        } else {
+            Author newAuthor = authorRepo.save(updatedBook.getAuthor());
+            existingBook.setAuthor(newAuthor);
+        }
+
+        return bookRepo.save(existingBook);
     }
+
 
 //    @Override
 //    public Author updateAuthor(Long id, Author updatedAuthor) {

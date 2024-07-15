@@ -6,7 +6,7 @@
     --main-color: #f8b6d1;
     --hover-color: #fecbe0;
     --background--color: #e1f4ed;
-    --light-color: #edf6f2;
+    --light-color: #f6fbf9;
     --def-button-color: #91DDBE;
 }
 
@@ -78,8 +78,9 @@ input {
 }
 
 input[type=submit] {
-    background-color: var(--main-color);
-    color: white;
+    color: black;
+    background-color: white;
+    cursor: pointer;
     font-size: 1rem;
     font-weight: bold;
 
@@ -113,30 +114,29 @@ input[type=submit] {
     background-color: var(--hover-color);   
 }
 
-/* book page */
+/* book/author page */
 
-.book-container {
+.book-container, .author-container {
     display: flex;
     padding: 2rem;
     gap: 0.5rem;
     font-family: "Poppins";
 }
 
-.book-info-container {
+.book-info-container, .author-short-info-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 45%;
     padding: 2rem;
-    background-color: var(--light-color);
 }
 
-.main-book-container {
+.main-book-container, .main-author-container {
     display: flex;
     flex-direction: column;
     width: 55%;
     padding: 2rem;
-    background-color: var(--light-color)
+    background-color: var(--light-color);
 }
 
 .text-content {
@@ -163,19 +163,31 @@ input[type=submit] {
 .default-button,
 .delete-button {
     padding: 0.8rem 1.2rem;
-    border: none;
-    border-radius: 8px;
+    border-radius: headingpx;
     cursor: pointer;
 
     font-family: "Poppins";
     font-size: medium;
     font-weight: bold;
-    color: white;
+    color: black;
+    background-color: white;
 }
 
 .default-button {
-    background-color: var(--def-button-color);
+    border: 3px solid var(--def-button-color);
 }
-.delete-button {
+.delete-button, input[type=submit]  {
+    border: 3px solid var(--main-color);
+}
+
+.default-button:hover {
+    background-color: var(--def-button-color);
+    color: white;
+}
+.delete-button:hover, input[type=submit]:hover {
     background-color: var(--main-color);
+    color: white;
+}
+.link-no-style {
+    text-decoration: none;
 }

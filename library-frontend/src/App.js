@@ -3,9 +3,10 @@ import './App.css';
 import { Main } from './components/Main';
 import { Navbar } from './components/Navbar';
 import { Book } from './components/Book';
+import { Author } from './components/Author';
 import { AddBook } from './components/AddBook';
 import { AddAuthor } from './components/AddAuthor';
-import { Author } from './components/Author';
+import { UpdateBook } from './components/UpdateBook';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path='/author/:authorID' element={<Author />} />
         <Route path='/addBook' element={<AddBook />} />
         <Route path='/addAuthor' element={<AddAuthor />} />
+        <Route path='/updateBook/:bookID' element={<UpdateBook />} />
       </Routes>
     </BrowserRouter>
   );
