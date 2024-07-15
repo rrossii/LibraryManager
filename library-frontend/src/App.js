@@ -5,6 +5,7 @@ import { Navbar } from './components/Navbar';
 import { Book } from './components/Book';
 import { AddBook } from './components/AddBook';
 import { AddAuthor } from './components/AddAuthor';
+import { Author } from './components/Author';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Main />} />
         <Route path='/book/:bookID' element={<Book />} />
+        <Route path='/author/:authorID' element={<Author />} />
         <Route path='/addBook' element={<AddBook />} />
         <Route path='/addAuthor' element={<AddAuthor />} />
       </Routes>

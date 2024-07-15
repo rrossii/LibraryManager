@@ -61,3 +61,25 @@ export const addAuthor = async (author) => {
         throw error
     }
 }
+
+export const deleteAuthorById = async (authorID) => {
+    try {
+        const response = await fetch(`http://localhost:8080/library/deleteAuthor/${authorID}`, {
+            method: 'DELETE'
+        })
+        const responseBody = await response.text()
+
+        if (!response.ok) {
+            throw new Error("Cannot delete an author! " + response)
+        }
+        if (responseBody !== "Author has been deleted") {
+            throw new Error("Cannot delete an author! " + response)
+        }
+
+        return await "Author has been deleted. "
+
+    } catch (error) {
+        console.error(error)
+        throw error
+    }
+}
