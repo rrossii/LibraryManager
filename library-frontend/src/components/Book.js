@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { fetchBookById, deleteBookById } from "../utils/BookService"
-import default_img from "../resources/book-cover-default.jpg";
+import default_img from "../resources/book-cover-default.png";
 
 export function Book() {
     const { bookID } = useParams();
@@ -46,7 +46,7 @@ export function Book() {
             <div className="book-info-container">
                 <img src={default_img}
                     style={{ margin: "2rem" }}
-                    width="60%" height="60%"
+                    width="70%" height="70%"
                     alt="Default book cover"></img>
                 <div className="text-content">
                     <p>Genre: {book.genre}</p>
