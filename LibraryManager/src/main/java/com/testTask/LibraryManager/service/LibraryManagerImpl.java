@@ -78,6 +78,7 @@ public class LibraryManagerImpl implements LibraryManagerService {
             Book existingBook = optionalBook.get();
             existingBook.setTitle(updatedBook.getTitle());
             existingBook.setDescription(updatedBook.getDescription());
+            existingBook.setGenre(updatedBook.getGenre());
             existingBook.setPublishedYear(updatedBook.getPublishedYear());
             existingBook.setPages(updatedBook.getPages());
 
