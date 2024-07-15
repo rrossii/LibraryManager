@@ -49,7 +49,7 @@ export const addBook = async (book) => {
         });
 
         const responseBody = await response.text()
-        if (!response.ok) {
+        if (!response.ok) { 
             throw new Error("Cannot add book! " + response)
         }
         if (responseBody !== "New book has been added") { // з беку відповідь (колись зробити нормально через ResponseEntity :))
@@ -58,6 +58,28 @@ export const addBook = async (book) => {
         
         return await "Book has been added. " + " Status: " + response.status
         
+    } catch (error) {
+        console.error(error)
+        throw error
+    }
+}
+
+export const deleteBookById = async (bookID) => {
+    try {
+        const response = await fetch(`http://localhost:8080/library/deleteBook/${bookID}`, {
+            method: 'DELETE'
+        })
+        const responseBody = await response.text()
+
+        if (!response.ok) {
+            throw new Error("Cannot delete a book! " + response)
+        }
+        if (responseBody !== "Book has been deleted") {
+            throw new Error("Cannot delete a book! " + response)
+        }
+
+        return await "Book has been deleted. "
+
     } catch (error) {
         console.error(error)
         throw error

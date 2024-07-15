@@ -3,10 +3,11 @@
 
 
 :root {
-    --main-color: #f09aa7;
-    --hover-color: #f4a5b2;
-    --background--color: #e6f0d5;
-    --light-color: #eef6ea;
+    --main-color: #f8b6d1;
+    --hover-color: #fecbe0;
+    --background--color: #e1f4ed;
+    --light-color: #edf6f2;
+    --def-button-color: #91DDBE;
 }
 
 body {
@@ -108,7 +109,8 @@ input[type=submit] {
 }
 
 .book-item:hover {
-    cursor: pointer;    
+    cursor: pointer; 
+    background-color: var(--hover-color);   
 }
 
 /* book page */
@@ -139,14 +141,41 @@ input[type=submit] {
 
 .text-content {
     text-align: left;
-    margin-top: 2rem;
     width: 60%;
 }
 
 .main-book-container h2 {
     margin-bottom: 0.5rem;
-}
-
+}   
 .main-book-container h3 {
     margin-top: 0; 
+}
+.main-book-container p {
+    margin-bottom: 1rem;
+}
+
+.book-buttons-container {
+    display: flex;  
+    gap: 0.5rem;
+    margin-top: 50%;
+}
+
+.default-button,
+.delete-button {
+    padding: 0.8rem 1.2rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+
+    font-family: "Poppins";
+    font-size: medium;
+    font-weight: bold;
+    color: white;
+}
+
+.default-button {
+    background-color: var(--def-button-color);
+}
+.delete-button {
+    background-color: var(--main-color);
 }
