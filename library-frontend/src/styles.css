@@ -6,6 +6,7 @@
     --main-color: #f09aa7;
     --hover-color: #f4a5b2;
     --background--color: #e6f0d5;
+    --light-color: #eef6ea;
 }
 
 body {
@@ -52,6 +53,8 @@ ul {
     background-color: var(--hover-color);
 }
 
+/* form */
+
 .form-container {
     display: block;
     margin-top: 3%;
@@ -85,6 +88,7 @@ input[type=submit] {
 }
 
 .plain-heading {
+    font-family: "Poppins";
     font-size: 2rem;
 }
 
@@ -105,4 +109,44 @@ input[type=submit] {
 
 .book-item:hover {
     cursor: pointer;    
+}
+
+/* book page */
+
+.book-container {
+    display: flex;
+    padding: 2rem;
+    gap: 0.5rem;
+    font-family: "Poppins";
+}
+
+.book-info-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 45%;
+    padding: 2rem;
+    background-color: var(--light-color);
+}
+
+.main-book-container {
+    display: flex;
+    flex-direction: column;
+    width: 55%;
+    padding: 2rem;
+    background-color: var(--light-color)
+}
+
+.text-content {
+    text-align: left;
+    margin-top: 2rem;
+    width: 60%;
+}
+
+.main-book-container h2 {
+    margin-bottom: 0.5rem;
+}
+
+.main-book-container h3 {
+    margin-top: 0; 
 }
