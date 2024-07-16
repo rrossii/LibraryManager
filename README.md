@@ -11,11 +11,13 @@ nvm 0.39.0
 Run on Linux (recommended!!!):
 * Ensure you have sudo privileges to run commands
 * Open terminal: ctrl + alt + t
-* Run scripts:
+* Run scripts from /LibraryManager/scripts:
     ```bash
-    ./install-back.sh 
-    ./install-front.sh 
+    ./install-back.sh
     ```
+    ```bash
+  ./install-front.sh 
+  ```
 * Database configuration:
   ```
   sudo mysql -u root -p
@@ -28,6 +30,10 @@ Run on Linux (recommended!!!):
   ```
   Done!
 
+* Run script from /LibraryManager/scripts to create database:
+  ```bash
+  ./create-db.sh
+  ```
 
 * Run from /LibraryManager/LibraryManager (where pom.xml is located):
   ```
