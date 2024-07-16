@@ -111,3 +111,32 @@ export const deleteBookById = async (bookID) => {
         throw error
     }
 }
+
+export const filterBooksByTitle = async (title) => {
+    try {
+        console.log("title: " + title)
+        const response = await fetch(`http://localhost:8080/library/filterBooksByTitle/${title}`, {
+            method: 'GET',
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+        if (!response.ok) {
+            console.log(response)
+            throw new Error("Cannot retrieve filtered books! " + `Response: ${response}`)
+        }
+
+        const data = await response.json()
+
+        if (data.length === 0) {
+            console.log("No such books!")
+            throw new Error("No such books!");
+        }
+
+        console.log(data)
+        return data;
+    } catch (error) {
+        console.error("Error fetching books:", error);
+        throw error;
+    }
+}
