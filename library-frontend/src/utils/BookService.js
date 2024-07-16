@@ -136,7 +136,7 @@ export const filterBooksByTitle = async (title) => {
         console.log(data)
         return data;
     } catch (error) {
-        console.error("Error fetching books:", error);
+        console.error("Error with books filtering: ", error);
         throw error;
     }
 }
@@ -165,7 +165,36 @@ export const filterBooksByAuthor = async (authorName) => {
         console.log(data)
         return data;
     } catch (error) {
-        console.error("Error fetching books:", error);
+        console.error("Error with books filtering: ", error)
+        throw error;
+    }
+}
+
+export const exportBookToCsv = async () => {
+    try {
+        const response = await fetch(`http://localhost:8080/library/export`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'text/csv',
+            }
+        })
+        if (!response.ok) {
+            console.log(response)
+            throw new Error("Cannot export books! " + `Response: ${response}`)
+        }
+        const blob = await response.blob()
+
+        const temporaryUrl = URL.createObjectURL(blob)
+        const a = document.createElement('a')
+        a.href = temporaryUrl
+        a.download = 'booksData.csv'
+        document.body.appendChild(a)
+        a.click()
+        document.body.removeChild(a)
+
+        return await "Books have been exported. "
+    } catch (error) {
+        console.log(error)
         throw error;
     }
 }

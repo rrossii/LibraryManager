@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
+import { useNavigate } from "react-router-dom"
 import { Link } from 'react-router-dom';
-import { filterBooksByTitle, filterBooksByAuthor } from "../utils/BookService"
+import { filterBooksByTitle, filterBooksByAuthor, exportBookToCsv } from "../utils/BookService"
 import '../styles.css'
 
 export function Navbar({setFilteredBooks, isMainPage}) {
+    let navigate = useNavigate();
+
     const [filter, setFilter] = useState('default')
     console.log("filter: " + filter)
 
@@ -25,11 +28,25 @@ export function Navbar({setFilteredBooks, isMainPage}) {
         }
     }
 
+    const handleExportButtonClick = async () => {
+        try {
+            const result = await exportBookToCsv()
+            console.log(result)
+        } catch (error) {
+            alert(error)
+        }
+    }
+
+    const handleAppTitleClick = () => {
+        navigate('/')
+        window.location.reload()
+    };
+
 
     return (
         <nav className="navbar">
             <div className='navbar-left'>
-                <Link to="/" className="app-title">
+                <Link to="/" className="app-title" onClick={handleAppTitleClick}>
                     LibMan
                 </Link>
                 <ul>
@@ -38,6 +55,9 @@ export function Navbar({setFilteredBooks, isMainPage}) {
                     </li>
                     <li>
                         <Link to="/addAuthor" className='nav-link'>Add Author</Link>
+                    </li>
+                    <li>
+                        <Link className='nav-link' onClick={handleExportButtonClick}>Export books</Link>
                     </li>
                 </ul>
             </div>

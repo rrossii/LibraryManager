@@ -44,7 +44,12 @@ export function Book() {
     }
 
     if (!book) {
-        return <div>Loading book...</div>;
+        return (
+            <>
+            <Navbar />
+            <div>Loading book...</div>;
+        </>
+        )
     }
 
     return (
