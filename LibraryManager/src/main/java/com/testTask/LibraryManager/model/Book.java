@@ -19,6 +19,16 @@ public class Book {
     private Author author;
 
     public Book() {
+
+    }
+
+    public Book(String title, String genre, String description, int publishedYear, int pages, Author author) {
+        this.title = title;
+        this.genre = genre;
+        this.description = description;
+        this.publishedYear = publishedYear;
+        this.pages = pages;
+        this.author = author;
     }
 
     public void setBookID(Long bookID) {
