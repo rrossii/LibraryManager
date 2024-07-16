@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { addAuthor } from "../utils/AuthorService"
+import { Navbar } from './Navbar';
 
 export function AddAuthor() {
     let navigate = useNavigate()
@@ -31,7 +32,9 @@ export function AddAuthor() {
     }
 
     return (
-        <div className="form-container">
+        <>
+            <Navbar />
+            <div className="form-container">
             <h2 className="plain-heading">Add an author</h2>
             <form className="classic-form" onSubmit={handleSubmitButton}>
                 <label for="name">Name:</label>
@@ -54,5 +57,7 @@ export function AddAuthor() {
                 <input type="submit" value="Add"></input>
             </form>
         </div>
+        </>
+        
     )
 }

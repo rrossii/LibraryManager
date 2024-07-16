@@ -2,6 +2,7 @@ import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { addBook } from "../utils/BookService"
 import { handleInputChange } from '../utils/formUtils'
+import {Navbar} from './Navbar'
 
 export function AddBook() {
     let navigate = useNavigate();
@@ -33,76 +34,80 @@ export function AddBook() {
     }
 
     return (
-        <div className="form-container">
-            <h2 className="plain-heading">Add a book</h2>
-            <form className="classic-form" onSubmit={handleSubmitButton}>
-                <label for="title">Title:</label>
-                <input
-                    type="text"
-                    id="title"
-                    name="title"
-                    required 
-                    onChange={handleBookChange}
-                /><br></br>
+        <>
+            <Navbar />
+            <div className="form-container">
+                <h2 className="plain-heading">Add a book</h2>
+                <form className="classic-form" onSubmit={handleSubmitButton}>
+                    <label for="title">Title:</label>
+                    <input
+                        type="text"
+                        id="title"
+                        name="title"
+                        required
+                        onChange={handleBookChange}
+                    /><br></br>
 
-                <label for="author">Author's name:</label>
-                <input
-                    type="text"
-                    id="author"
-                    name="author"
-                    required 
-                    onChange={e => setBook(prevBook => ({
-                        ...prevBook,
-                        author: {
-                            ...prevBook.author,
-                            name: e.target.value
-                        }
-                    }))}
-                /><br></br>
+                    <label for="author">Author's name:</label>
+                    <input
+                        type="text"
+                        id="author"
+                        name="author"
+                        required
+                        onChange={e => setBook(prevBook => ({
+                            ...prevBook,
+                            author: {
+                                ...prevBook.author,
+                                name: e.target.value
+                            }
+                        }))}
+                    /><br></br>
 
-                <label for="genre">Genre:</label>
-                <input
-                    type="text"
-                    id="genre"
-                    name="genre" 
-                    required
-                    onChange={handleBookChange}
-                /><br></br>
+                    <label for="genre">Genre:</label>
+                    <input
+                        type="text"
+                        id="genre"
+                        name="genre"
+                        required
+                        onChange={handleBookChange}
+                    /><br></br>
 
-                <label for="description">Description:</label>
-                <input
-                    type="text"
-                    id="description"
-                    name="description"
-                    required 
-                    onChange={handleBookChange}
-                /><br></br>
+                    <label for="description">Description:</label>
+                    <input
+                        type="text"
+                        id="description"
+                        name="description"
+                        required
+                        onChange={handleBookChange}
+                    /><br></br>
 
-                <label for="year">Published year:</label>
-                <input
-                    type="number"
-                    id="year"
-                    name="year"
-                    min="0" max="2026"
-                    required 
-                    onChange={handleBookChange}
-                /><br></br>
+                    <label for="year">Published year:</label>
+                    <input
+                        type="number"
+                        id="year"
+                        name="year"
+                        min="0" max="2026"
+                        required
+                        onChange={handleBookChange}
+                    /><br></br>
 
-                <label for="pages">Pages:</label>
-                <input
-                    type="number"
-                    id="pages"
-                    name="pages"
-                    min="0"
-                    required 
-                    onChange={handleBookChange}
-                /><br></br>
+                    <label for="pages">Pages:</label>
+                    <input
+                        type="number"
+                        id="pages"
+                        name="pages"
+                        min="0"
+                        required
+                        onChange={handleBookChange}
+                    /><br></br>
 
-                <input
-                    type="submit"
-                    value="Add">
-                </input>
-            </form>
-        </div>
+                    <input
+                        type="submit"
+                        value="Add">
+                    </input>
+                </form>
+            </div>
+        </>
+
     )
 }

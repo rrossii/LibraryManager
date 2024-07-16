@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { fetchAuthorById, deleteBookById, deleteAuthorById } from "../utils/AuthorService"
+import { Navbar } from './Navbar'
 import default_author_img from "../resources/default_author.png";
 
 export function Author() {
@@ -41,21 +42,24 @@ export function Author() {
 
 
     return (
-        <div className="author-container">
-            <div className="author-short-info-container">
-                <img src={default_author_img}
-                    style={{ margin: "2rem" }}
-                    width="70%" height="80%"
-                    alt="Default author image"></img>
-            </div>
+        <>
+            <Navbar />
+            <div className="author-container">
+                <div className="author-short-info-container">
+                    <img src={default_author_img}
+                        style={{ margin: "2rem" }}
+                        width="70%" height="80%"
+                        alt="Default author image"></img>
+                </div>
 
-            <div className="main-author-container">
-                <h2 className="plain-heading">{author.name}</h2>
-                <p>Bio: {author.bio}</p>
-                <div className="book-buttons-container">
-                    <button className="delete-button" onClick={handleDeleteAuthorButton}>Delete</button>
+                <div className="main-author-container">
+                    <h2 className="plain-heading">{author.name}</h2>
+                    <p>Bio: {author.bio}</p>
+                    <div className="book-buttons-container">
+                        <button className="delete-button" onClick={handleDeleteAuthorButton}>Delete</button>
+                    </div>
                 </div>
             </div>
-        </div>
+        </>
     )
 }
