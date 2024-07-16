@@ -10,8 +10,8 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+//@CrossOrigin(origins = "*")
 @RequestMapping("/library")
-@CrossOrigin
 public class LibraryManagerController {
     @Autowired
     private LibraryManagerService libManager;
@@ -36,6 +36,7 @@ public class LibraryManagerController {
         return libManager.getAuthorById(id);
     }
 
+    @CrossOrigin(origins = "http://http://localhost:3000")
     @GetMapping("/filterBooksByTitle/{title}")
     public List<Book> filterBooksByTitle(@PathVariable String title) {
         return libManager.filterBooksByTitle(title);
