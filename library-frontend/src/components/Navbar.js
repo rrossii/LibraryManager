@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { filterBooksByTitle } from "../utils/BookService"
+import { filterBooksByTitle, filterBooksByAuthor } from "../utils/BookService"
 import '../styles.css'
 
 export function Navbar({setFilteredBooks, isMainPage}) {
@@ -17,7 +17,12 @@ export function Navbar({setFilteredBooks, isMainPage}) {
     }
 
     const handleFilterByAuthorButton = async () => {
-        
+        try {
+            const result = await filterBooksByAuthor(filter)
+            setFilteredBooks(result)
+        } catch (error) {
+            alert(error)
+        }
     }
 
 
@@ -49,7 +54,7 @@ export function Navbar({setFilteredBooks, isMainPage}) {
                             <button onClick={handleFilterByTitleButton}>Filter by title</button>
                         </li>
                         <li>
-                            <button>Filter by author</button>
+                            <button onClick={handleFilterByAuthorButton}>Filter by author</button>
                         </li>
                     </ul>
                 </div>
