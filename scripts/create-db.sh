@@ -1,0 +1,6 @@
+MYSQL_USER="root"
+MYSQL_PASSWORD="password"
+
+DATABASE_NAME="library_manager_database"
+
+mysql -u $MYSQL_USER -p$MYSQL_PASSWORD -e "CREATE DATABASE IF NOT EXISTS $DATABASE_NAME;"

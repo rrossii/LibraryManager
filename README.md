@@ -3,7 +3,38 @@ Prerequisites:
 Java 17.0.11
 Maven
 MySQL Server 8.0.38
+
+node 22.4.1
+npm 10.8.1
+nvm 0.39.0
 ```
+Run on Linux (recommended):
+* Ensure you have sudo privileges to run commands
+* Download or clone the script to your local machine
+* Open terminal: ctrl + alt + t
+* Make the scripts executable:
+   ```bash
+   chmod +x install-back.sh
+   chmod +x install-front.sh
+  ```
+* Run scripts:
+    ```bash
+    ./install-back.sh 
+    ./install-front.sh 
+    ```
+
+* Run from /LibraryManager/LibraryManager (where pom.xml is located):
+  ```
+    mvn spring-boot:run 
+  ```
+* Run from LibraryManager/library-frontend:
+  ```
+  npm start
+  ```
+
+Please, if you have any problems about installation or app launch, ask me (annros2003@gmail.com)
+
+
 If you are on Windows:
 * Download and install JDK 17
 ```angular2html
