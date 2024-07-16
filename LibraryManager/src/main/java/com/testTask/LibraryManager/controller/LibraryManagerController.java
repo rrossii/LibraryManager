@@ -1,11 +1,18 @@
 package com.testTask.LibraryManager.controller;
+import com.opencsv.CSVWriter;
+import com.opencsv.bean.StatefulBeanToCsv;
+import com.opencsv.bean.StatefulBeanToCsvBuilder;
+import com.opencsv.exceptions.CsvDataTypeMismatchException;
+import com.opencsv.exceptions.CsvRequiredFieldEmptyException;
 import com.testTask.LibraryManager.model.Author;
 import com.testTask.LibraryManager.model.Book;
 import com.testTask.LibraryManager.service.LibraryManagerService;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.web.bind.annotation.*;
 
-
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -95,5 +102,20 @@ public class LibraryManagerController {
         } else {
             return "Error deleting an author with ID = " + id;
         }
+    }
+
+    @GetMapping("/export")
+    public void exportCSV(HttpServletResponse response) throws IOException, CsvRequiredFieldEmptyException, CsvDataTypeMismatchException {
+        String fileName = "booksData.csv";
+
+        response.setContentType("text/csv");
+        response.setHeader(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + fileName + "");
+
+        StatefulBeanToCsv<Book> writer = new StatefulBeanToCsvBuilder<Book>(response.getWriter())
+                .withSeparator(CSVWriter.DEFAULT_SEPARATOR)
+                .withOrderedResults(true)
+                .build();
+
+        writer.write(libManager.getAllBooks());
     }
 }
