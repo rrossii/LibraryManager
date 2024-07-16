@@ -18,11 +18,30 @@ body {
     background-color: var(--main-color);
     color: white;
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center;
     gap: 2rem;
     padding: 0 1rem;
 }
+
+.navbar-left, .navbar-right {
+    display: flex;
+    align-items: center;
+}
+
+.navbar button {
+    padding: 0.8rem 1.2rem;
+    border-radius: headingpx;
+    cursor: pointer;
+    border: 0px;
+
+    font-family: "Poppins";
+    font-size: medium;
+    font-weight: bold;
+    color: black;
+    background-color: var(--main-color);
+}
+
 
 .app-title {
     color: white;
@@ -180,7 +199,7 @@ input[type=submit] {
     border: 3px solid var(--main-color);
 }
 
-.default-button:hover {
+.default-button:hover, .navbar button:hover {
     background-color: var(--def-button-color);
     color: white;
 }
